@@ -1,11 +1,10 @@
 const express = require('express');
 const mysql = require('mysql2');
+const dbQueries = require("./db/queries");
+const inquirer = require('inquirer')
 
-import {viewDepartments} from './queries';
-
-
-const PORT = process.env.PORT || 3001;
 const app = express();
+
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -18,54 +17,64 @@ const db = mysql.createConnection(
     database: 'employee_db'
   },
   console.log(`Connected to the employee_db database.`)
-  
 );
 
-function getDepartments() {
-  let result= viewDepartments()
-  console.log(result)
+let queries = new dbQueries(db)
+
+
+
+const chooseOption = {
+  type: 'list',
+  message: "what would you like to do?",
+  choices: [
+    "View all departments",
+    "View all employees",
+    "View all roles",
+    "View employees by department",
+    "View employee by manager",
+    "View total utilized budget of a department",
+    "Add department",
+    "Add Employee",
+    "Add Role",
+    "Update employee role",
+    "Update employee manager",
+    "Delete employee",
+    "Delete role",
+    "Delete department",
+    "Quit"
+  ],
+  name: 'options',
 }
 
-// db.query('SELECT * FROM employees', function (err, results) {
-//   console.log(results);
-// });
+// switch statement to select choice to be executed
+function init() {
+  inquirer.prompt(chooseOption)
+    .then(async response => {
+      switch (response.options) {
+        case "View all departments":
+          queries.viewDepartments(db);
+          break;
+        case "View all employees":
+          queries.viewEmployees(db);
+          break;
+        case "View all roles":
+          queries.viewRoles(db);
+          break;
+        default:
+          db.end();
+      }
+    });
+}
+async function viewDepartments(){
+  await queries.viewDepartments ();
+  then((response) => {
+    queries.viewDepartments,
+    response.departments
+    init()
+
+  }
+  )}
+
+init()
 
 
-// // delete department
-// db.query(`DELETE FROM departments WHERE id = ${department}`, function (err, result) {
-//  if (err) {
-//    console.log(err)
-//  }
-//   else if(result) {
-//   console.log("department deleted")
-//  }
- 
-// });
-
-// // delete roles 
-// db.query(`DELETE FROM roles WHERE id = ${role}`, function (err, result) {
-//   if (err) {
-//     console.log(error)
-//   }
-//    else if (result) {
-//    console.log("role deleted")
-//   }
-  
-//  });
-
-//  // delete employee 
-// db.query(`DELETE FROM employees WHERE id = ${employee}`, function (err, result) {
-//   if (err) {
-//     console.log(error)
-//   }
-//    else if (result) {
-//    console.log("employee deleted")
-//   }
-  
-//  });
-
- 
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
