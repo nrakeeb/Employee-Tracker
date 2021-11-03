@@ -1,10 +1,10 @@
-const express = require('express');
-const mysql = require('mysql2');
+const express = require("express");
+const mysql = require("mysql2");
+const inquirer = require("inquirer");
+
 const dbQueries = require("./db/queries");
-const inquirer = require('inquirer')
 
 const app = express();
-
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -20,8 +20,6 @@ const db = mysql.createConnection(
 );
 
 let queries = new dbQueries(db)
-
-
 
 const chooseOption = {
   type: 'list',
@@ -65,16 +63,5 @@ function init() {
       }
     });
 }
-async function viewDepartments(){
-  await queries.viewDepartments ();
-  then((response) => {
-    queries.viewDepartments,
-    response.departments
-    init()
-
-  }
-  )}
 
 init()
-
-
