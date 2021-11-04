@@ -1,7 +1,7 @@
 const express = require("express");
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
-require('dotenv').config()
+require('dotenv').config();
 
 const dbQueries = require("./db/queries");
 
@@ -52,12 +52,15 @@ function init() {
       switch (response.options) {
         case "View all departments":
           queries.viewDepartments(db);
+          init();
           break;
         case "View all employees":
           queries.viewEmployees(db);
+          init();
           break;
         case "View all roles":
           queries.viewRoles(db);
+          init();
           break;
         default:
           db.end();
@@ -65,4 +68,4 @@ function init() {
     });
 }
 
-init()
+init();

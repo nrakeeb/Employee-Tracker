@@ -23,17 +23,6 @@ class Queries {
             console.table(results);
         });
     }
-
-    // deleteDepartment(db) {
-    //     db.query(`DELETE FROM departments WHERE id = ${department}`, function (err, result) {
-    //         if (err) {
-    //             console.log(err)
-    //         }
-    //         else if (result) {
-    //             console.log("department deleted")
-    //         }
-    //     });
-    // }
 }
 
 module.exports = Queries;
