@@ -8,7 +8,13 @@ Run the following command to install all dependencies:
 
 npm i
 
-Then navigate to the root of the project and run the following command:
+For security you will need to create a .env file in the root directory to store your database credentials. This file should contain the information as follows:
+
+DB_HOST=xxx
+DB_USER=xxx
+DB_PASS=xxx
+
+Once completed, navigate to the root of the project and run the following command:
 
 node server.js
 
