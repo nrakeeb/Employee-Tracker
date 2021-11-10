@@ -14,15 +14,25 @@ class Queries {
 
     viewEmployees(db) {
         db.query('SELECT * FROM employees', function (err, results) {
+            console.log(`\n`);
             console.table(results);
         });
     }
 
     viewRoles(db) {
         db.query('SELECT * FROM roles', function (err, results) {
+            console.log(`\n`);
             console.table(results);
         });
     }
+
+    viewEmployeesByDepartment(db, departmentId) {
+        console.log("HERE");
+        db.query(`SELECT * FROM employees JOIN roles ON employees.role_id = roles.id WHERE roles.department_id = ${departmentId}`, function (err, results) {
+            console.log(`\n`);
+            console.table(results);
+        })
+    };
 }
 
 module.exports = Queries;

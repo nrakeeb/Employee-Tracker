@@ -62,6 +62,10 @@ function init() {
           queries.viewRoles(db);
           init();
           break;
+        case "View employees by department":
+          queries.viewEmployeesByDepartment(db, 2);
+          init();
+          break;
         default:
           db.end();
       }
