@@ -23,7 +23,9 @@ const db = mysql.createConnection(
 
 let queries = new dbQueries(db)
 
-const chooseOption = {
+function init() {
+  inquirer
+  .prompt({
   type: 'list',
   message: "what would you like to do?",
   choices: [
