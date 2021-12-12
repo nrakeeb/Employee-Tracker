@@ -21,11 +21,29 @@ const db = mysql.createConnection(
   console.log(`Connected to the employee_db database.`)
 );
 
+// db.query = util.promisify(db.query);
+
+// Begin the application after establishing the connection.
+db.connect(function (err) {
+    if (err) throw err;
+    afterConnection();
+})
+
+afterConnection = () =>  {
+  console.log("***********************************")
+  console.log("*                                 *")
+  console.log("*        EMPLOYEE MANAGER         *")
+  console.log("*                                 *")
+  console.log("***********************************")
+  init();
+};
+
 let queries = new dbQueries(db)
 
-function init() {
-  inquirer
-  .prompt({
+const init = async() => {
+  try {
+let answer = await inquirer.prompt({
+  name: 'options',
   type: 'list',
   message: "what would you like to do?",
   choices: [
