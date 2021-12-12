@@ -195,14 +195,15 @@ class Queries {
     
 }
 
-async departmentChoice() {
-    const [data] = await this.db.promise()
-    .query('SELECT * FROM departments;');
+    async departmentChoice() {
+       const [data] = await this.db.promise()
+       .query('SELECT * FROM departments;');
     
-const department = data.map(result => { return {name: result.name, value: result.id} })
-return department;
+    const department = data.map(result => { return {name: result.name, value: result.id} })
+    return department;
 
 }
+
 }
  
 
