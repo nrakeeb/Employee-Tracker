@@ -246,18 +246,123 @@ async function addRole() {
   }
 
 ])
-
 .then((response) => queries.newRole(response.newRole, response.salary, response.department, init())
-
 )};
 
 
-//---------------------------------------------- UPDATE-----------------------------------------------------------//
+//------------------------------------------------------------ UPDATE ----------------------------------------------------------------------------//
 
 
-async function updateEmployee(){
-  
+async function updateEmployeeRole() {
+  const roleChoices = await queries.rolesChoice();
+  const employeeChoices = await queries.employeesChoice();
+  inquirer
+    .prompt([
+    {
+      type: 'list',
+      message: "Which employee would you like to update the role of?",
+      choices: employeeChoices,
+      name: 'employee',
+    },
+    {
+      type: 'list',
+      message: "What would you like the employee's new role to be?",
+      choices: roleChoices,
+      name: 'role',
+    },
+  ])
+    .then((response) => {
+      queries.updateEmployeeRole(
+        response.employee, 
+        response.role, 
+        init()
+        );
+  });
 }
 
+async function updateEmployeeManager() {
+  const employeeChoices = await queries.employeesChoice();
+  inquirer
+    .prompt([
+    {
+      type: 'list',
+      message: "Which employee would you like to update the manager of?",
+      choices: employeeChoices,
+      name: 'employee',
+    },
+    {
+      type: 'list',
+      message: "Who would you like the employee's new manager to be?",
+      choices: employeeChoices,
+      name: 'manager',
+    },
+  ])
+    .then((response) => {
+      queries.updateEmployeeManager(
+        response.employee, 
+        response.manager, 
+        init()
+        );
+  });
+}  
 
-init();
+// ------------------------------------------------------------ DELETE --------------------------------------------------------------------------- //
+
+async function deleteRole() {
+  const roleChoices = await queries.rolesChoice();
+  inquirer
+    .prompt([
+    {
+      type: 'list',
+      message: "Which role would you like to delete?",
+      choices: roleChoices,
+      name: 'role',
+    },
+  ])
+    .then((response) => {
+      queries.deleteRole(
+        response.role, 
+        init()
+      );
+  });
+}
+
+async function deleteEmployee() {
+  const employeeChoices = await queries.employeesChoice();
+  inquirer
+    .prompt([
+    {
+      type: 'list',
+      message: "Which employee would you like to delete?",
+      choices: employeeChoices,
+      name: 'employee',
+    },
+  ])
+    .then((response) => {
+      queries.deleteEmployee(
+        response.employee, 
+        init()
+      );
+  });
+}
+
+async function deleteDepartment() {
+  const departmentChoices = await queries.departmentChoice();
+  inquirer
+    .prompt([
+    {
+      type: 'list',
+      message: "Which department would you like to delete?",
+      choices: departmentChoices,
+      name: 'department',
+    },
+  ])
+    .then((response) => {
+      queries.deleteDepartment(
+        response.department, 
+        init()
+      );
+  });
+}
+
+// init()
