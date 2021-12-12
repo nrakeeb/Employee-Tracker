@@ -140,30 +140,29 @@ async function viewEmployeesByDepartment() {
       response.department,
       init()
     )
-    
   })
 }
 
-
-async function viewEmployeeByManager() {
-const employeeChoice = await queries.employeesChoice()
-inquirer
- .prompt([
-   {
-     type: "list",
-     message: "which manager would you like to view the employee of?",
-     choices: employeeChoice,
-     name: "manager",
-   },
-  ])
-   .then ((response) => {
-     queries.viewByManager(
-       response.manager,
-       init()
-     )
-   })
+  async function viewDepartmentBudget() {
+    const departmentChoice = await queries.departmentChoice();
+    inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "what department would you like to view the total utilised budget for?",
+        choices: departmentChoice,
+        name: "department",
+      },
+    ])
+      .then ((response) => {
+        queries.viewEmployeesByDepartment(
+          response.department,
+          init()
+        )  
+      })
+      
   }
-//----------------------------------------------------- ADD---------------------------------------------//
+//----------------------------------------------------------- ADD --------------------------------------------------------------------------------//
 
 function addDepartment() {
   inquirer
