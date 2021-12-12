@@ -186,55 +186,33 @@ async function addEmployee() {
 
   let managers = await queries.employeesChoice();
 
-  let response = await inquirer.prompt([
+    inquirer
+    .prompt([
     {
-
+      type: 'input',
+      message: "What is the new employee's first name?",
       name: 'firstName',
-      type: 'input',
-      message: 'What is the first name of this Employee?',
-      validate: addFirst => {
-        if (addFirst) {
-          return true;
-        } else {
-          console.log('Please enter a first name');
-          return false;
-        }
-      }
     },
     {
+      type: 'input',
+      message: "What is the new employee's last name?",
       name: 'lastName',
-      type: 'input',
-      message: 'What is the last name of this Employee?',
-      validate: addLast => {
-        if (addLast) {
-          return true;
-        } else {
-          console.log('Please enter a last name');
-          return false;
-        }
-      }
     },
     {
-      name: 'employeeRoleId',
       type: 'list',
+      message: "What is the new employee's role?",
       choices: roles,
-      message: "What is this Employee's role id?",
+      name: 'employeeRoleId',
     },
     {
-      name: 'employeeManagerId',
       type: 'list',
+      message: "What is the new employee's manager?",
       choices: managers,
-      message: "What is this Employee's Manager's Id?"
+      name:  'employeeManagerId',
     }
   ])
-   
-    .then((response) => queries.newEmployee(response.firstName, response.lastName, response.employeeRoleId, response.employeeManagerId))
-  {
-    init()
-  }
-
-};
-
+    .then((response) => queries.newEmployee(response.firstName, response.lastName, response.employeeRoleId, response.employeeManagerId, init())
+    )};
 
 
 async function addRole() {
