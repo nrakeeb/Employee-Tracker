@@ -32,17 +32,26 @@ class Queries {
         this.db.query(`SELECT * FROM employees JOIN roles ON employees.role_id = roles.id WHERE roles.department_id = ${departmentId}`, function (err, results) {
             console.log(`\n`);
             console.table(results);
-        })
-    }
-
-    viewByManager(managerId){
-        this.db.query(`SELECT employees.id, first_name, last_name, roles.title AS title, roles.salary AS salary, manager_id FROM employees JOIN roles ON employees.role_id = roles.id WHERE manager_id = ${managerId};`, function (err, result) {
             console.log(`\n`);
-            console.table(results);
+            console.log(`\n`);
+            console.log(`\n`);
+            console.log(`\n`);
         })
     }
 
-    // -------------------------------------------------- ADD -----------------------------------------------------------------//
+    viewBudget(department){
+        this.db.query(`SELECT SUM(roles.salary) AS "Total Utilised Budget" FROM employees JOIN roles ON employees.roles_id = roles.id WHERE roles.departments_id = ${department};`, function (err, result) {
+            console.log(`\n`);
+            console.table(result);
+            console.log(`\n`);
+            console.log(`\n`);
+            console.log(`\n`);
+            console.log(`\n`);
+            
+        }); 
+    }
+
+    // -------------------------------------------------------- ADD ----------------------------------------------------------------------------- //
 
     addDepartment(name) {
         this.db.query(`INSERT INTO departments(name) VALUES ("${name}")`, function (err, results) {
