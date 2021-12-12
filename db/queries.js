@@ -11,13 +11,21 @@ class Queries {
         this.db.query('SELECT * FROM departments', function (err, results) {
             console.log(`\n`);
             console.table(results);
+            console.log(`\n`);
+            console.log(`\n`);
+            console.log(`\n`);
+            console.log(`\n`);
         });
     }
 
     viewEmployees() {
         this.db.query('SELECT * FROM employees', function (err, results) {
             console.log(`\n`);
-            console.table(results);
+            console.table(results)
+            console.log(`\n`);
+            console.log(`\n`);
+            console.log(`\n`);
+            console.log(`\n`);
         });
     }
 
@@ -25,6 +33,10 @@ class Queries {
         this.db.query('SELECT * FROM roles', function (err, results) {
             console.log(`\n`);
             console.table(results);
+            console.log(`\n`);
+            console.log(`\n`);
+            console.log(`\n`);
+            console.log(`\n`);
         });
     }
 
@@ -58,7 +70,12 @@ class Queries {
             if (err) {
                 throw err;
             } else {
-                console.log("department added into the database")
+            console.log(`\n`);
+            console.log(`"${name}" has been added into the database.\n`)
+            console.log(`\n`);
+            console.log(`\n`);
+            console.log(`\n`);
+            console.log(`\n`);
             }
         }
         )
@@ -69,8 +86,13 @@ class Queries {
             if (err) {
                 console.error(err)
             } else {
+                console.log(`\n`);
                 console.log(`Database updated with new employee.`)
-                console.log(`"${firstName}", "${lastName}" added successfully.\n`)
+                console.log(`\n`);
+                console.log(`"${firstName}", "${lastName}" is added successfully.\n`)
+                console.log(`\n`);
+                console.log(`\n`);
+                console.log(`\n`);
                 console.log(`\n`);
             };
         });
@@ -82,7 +104,11 @@ class Queries {
                 console.error(err)
             } else {
                 console.log(`Database updated with new role.`)
-                console.log(`"${title}" added successfully.\n`)
+                console.log(`\n`);
+                console.log(`"${title}" is added successfully.\n`)
+                console.log(`\n`);
+                console.log(`\n`);
+                console.log(`\n`);
                 console.log(`\n`);
             };
         });
