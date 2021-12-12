@@ -1,10 +1,11 @@
 const express = require("express");
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
+const util = require('util');
 require('dotenv').config();
 
 const dbQueries = require("./db/queries");
-// const { response } = require("express");
+const req = require("express/lib/request");
 
 const app = express();
 
@@ -51,11 +52,10 @@ let answer = await inquirer.prompt({
     "View all employees",
     "View all roles",
     "View employees by department",
-    "View employee by manager",
     "View total utilized budget of a department",
     "Add Department",
-    "Add Employee",
     "Add Role",
+    "Add Employee",
     "Update employee role",
     "Update employee manager",
     "Delete employee",
@@ -63,30 +63,28 @@ let answer = await inquirer.prompt({
     "Delete department",
     "Quit"
   ],
-  name: 'options',
+ 
 })
 
 // switch statement to select choice to be executed
-
-    .then(async response => {
-      switch (response.options) {
+    switch(answer.options){
         case "View all departments":
           queries.viewDepartments();
-          init();
+          init()
           break;
         case "View all employees":
           queries.viewEmployees();
-          init();
+          init()
           break;
         case "View all roles":
           queries.viewRoles();
-          init();
+          init()
           break;
         case "View employees by department":
           viewEmployeesByDepartment();
           break;
-        case "View employee by manager":
-          viewEmployeeByManager();
+        case "View total utilized budget of a department":
+          viewDepartmentBudget()
           break;
         case "Add Department":
           addDepartment();
@@ -98,16 +96,33 @@ let answer = await inquirer.prompt({
           addRole();
           break;
         case "Update employee role":
-          updateEmployee()
+          updateEmployeeRole()
+          break;
+        case "Update employee manager":
+        updateEmployeeManager()
+        break;
+        case "Delete employee":
+          deleteEmployee()
+        break;
+        case "Delete role":
+          deleteRole()
+        break;
+        case "Delete department":
+          deleteDepartment()
+        break;
         default:
           db.end();
       }
-    });
+    } catch (err) {
+      console.log(err);
+      init();
+  };
 }
 
 
 
-// ----------------------------------------------- VIEW -----------------------------------------------//
+
+// ------------------------------------------------------------ VIEW --------------------------------------------------------------------------- //
 
 async function viewEmployeesByDepartment() {
   const departmentChoice = await queries.departmentChoice()
