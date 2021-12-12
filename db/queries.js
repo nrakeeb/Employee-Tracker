@@ -84,12 +84,88 @@ class Queries {
     // ------------------------------------------------------- UPDATE ---------------------------------------------------------------//
 
 
-    updateEmployee(){
-    this.db.query()
-
+    updateEmployeeRole(id, role){
+        this.db.query(`UPDATE employees SET role_id = ${role} WHERE id = ${id};`, function (err, result) {
+            if (err) {
+                console.error(err)
+            } else {
+                console.log(`\n`);
+                console.log(`Employee records updated.`)
+                console.log(`\n`);
+                console.log(`\n`);
+                console.log(`\n`);
+                console.log(`\n`);
+            }
+        
+        }); 
     }
 
+    updateEmployeeManager(id, manager){
+        this.db.query(`UPDATE employees SET manager_id = ${manager} WHERE id = ${id};`, function (err, result) {
+            if (err) {
+                console.error(err)
+            } else {
+                console.log(`\n`);
+                console.log(`Employee records updated.`)
+                console.log(`\n`);
+                console.log(`\n`);
+                console.log(`\n`);
+                console.log(`\n`);
+            }
+        }); 
+      
+    }
 
+    // --------------------------------------------------------------  DELETE --------------------------------------------------------------------//
+
+    deleteDepartment(department) {
+        this.db.query(`DELETE FROM departments WHERE id = ${department}`, function (err, result) {
+            if (err) {
+                console.error(err)
+            } else {
+                console.log(`\n`);
+                console.log("department deleted from the database.")
+                console.log(`\n`);
+                console.log(`\n`);
+                console.log(`\n`);
+                console.log(`\n`);
+            }
+        }); 
+    }
+      
+     
+    deleteRole(role) {
+        this.db.query(`DELETE FROM roles WHERE id = ${role}`, function (err, result) {
+            if (err) {
+                console.error(err)
+            } else {
+                console.log(`\n`);
+                console.log("role deleted from the database.")
+                console.log(`\n`);
+                console.log(`\n`);
+                console.log(`\n`);
+                console.log(`\n`);
+            }
+        
+        }); 
+    }
+
+    deleteEmployee(employee) {
+        this.db.query(`DELETE FROM employees WHERE id = ${employee}`, function (err, result) {
+            if (err) {
+                console.error(err)
+            } else {
+                console.log(`\n`);
+                console.log("employee deleted from the database.")
+                console.log(`\n`);
+                console.log(`\n`);
+                console.log(`\n`);
+                console.log(`\n`);
+            }
+        }); 
+    }
+
+ 
     // ------------------------------------------------------ MAPPING TABLES--------------------------------------------------------//
 
     async rolesChoice() {
