@@ -1,6 +1,6 @@
 # Employee-Tracker
 
-Node.js command-line application to query database for employees of a software engineering company.
+Node.js command-line application to query database for employees working within a company. This allows the business owner to keep track and manage the departments, roles, and employees in the company.
 
 ## Installation and Usage
 
