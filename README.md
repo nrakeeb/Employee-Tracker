@@ -32,6 +32,16 @@ You will then be prompted with a menu where you can then select the option you w
 
 Link to the vido tutorial can be found here:
 
+https://youtu.be/N5mLU5uZRI4
+
 
 ## Screenshots
+
+![1 Capture](https://user-images.githubusercontent.com/82734765/145736656-20f9120d-0590-4a3e-ac6a-a3163bd64a5f.PNG)
+
+![2 Capture](https://user-images.githubusercontent.com/82734765/145736667-1914c158-3e9c-49ac-aa20-1d56d0ecf9ec.PNG)
+
+![3 Capture](https://user-images.githubusercontent.com/82734765/145736669-9740ea7a-1e5b-4e96-ac26-f4ade5c87ae9.PNG)
+
+
 
