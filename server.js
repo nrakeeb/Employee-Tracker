@@ -1,11 +1,10 @@
 const express = require("express");
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
-const util = require('util');
 require('dotenv').config();
 
 const dbQueries = require("./db/queries");
-const req = require("express/lib/request");
+// const req = require("express/lib/request");
 
 const app = express();
 
@@ -21,8 +20,6 @@ const db = mysql.createConnection(
   },
   console.log(`Connected to the employee_db database.`)
 );
-
-// db.query = util.promisify(db.query);
 
 // Begin the application after establishing the connection.
 db.connect(function (err) {
@@ -155,7 +152,7 @@ async function viewEmployeesByDepartment() {
       },
     ])
       .then ((response) => {
-        queries.viewEmployeesByDepartment(
+        queries.viewBudget(
           response.department,
           init()
         )  
