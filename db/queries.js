@@ -41,7 +41,7 @@ class Queries {
     }
 
     viewEmployeesByDepartment(departmentId) {
-        this.db.query(`SELECT * FROM employees JOIN roles ON employees.role_id = roles.id WHERE roles.department_id = ${departmentId}`, function (err, results) {
+        this.db.query(`SELECT first_name, last_name, roles.title AS title, roles.salary AS salary, manager_id FROM employees JOIN roles ON employees.role_id = roles.id WHERE roles.department_id = ${departmentId}`, function (err, results) {
             console.log(`\n`);
             console.table(results);
             console.log(`\n`);
@@ -52,7 +52,7 @@ class Queries {
     }
 
     viewBudget(department){
-        this.db.query(`SELECT SUM(roles.salary) AS "Total Utilised Budget" FROM employees JOIN roles ON employees.roles_id = roles.id WHERE roles.departments_id = ${department};`, function (err, result) {
+        this.db.query(`SELECT SUM(roles.salary) AS "Total Utilised Budget" FROM employees JOIN roles ON employees.role_id = roles.id WHERE roles.department_id = ${department};`, function (err, result) {
             console.log(`\n`);
             console.table(result);
             console.log(`\n`);
